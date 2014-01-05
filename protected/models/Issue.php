@@ -24,10 +24,15 @@
  */
 class Issue extends CActiveRecord
 {
+        // Define constants for Issue Type
         const TYPE_BUG=0;
         const TYPE_FEATURE=1;
         const TYPE_TASK=2;
-	/**
+        //Define constants for Issue Status
+        const STATUS_NOTYETSTARTED=0;
+        const STATUS_STARTED=1;
+        const STATUS_FINISHED=2;
+        /**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
@@ -47,12 +52,30 @@ class Issue extends CActiveRecord
 			array('project_id, type_id, status_id, owner_id, requester_id, create_user_id, update_user_id', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>255),
 			array('description, create_time, update_time', 'safe'),
+                        array('type_id', 'in','range'=>self::getAllowedTypeRange()),
+                        array('status', 'in','range'=>self::getAllowedStatusRange()),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, name, description, project_id, type_id, status_id, owner_id, requester_id, create_time, create_user_id, update_time, update_user_id', 'safe', 'on'=>'search'),
 		);
 	}
-
+        /***
+         * @return array range rules
+         */
+        public static function getAllowedTypeRange() {
+                return array(
+                    self::TYPE_BUG,
+                    self::TYPE_FEATURE,
+                    self::TYPE_TASK
+                );
+        }
+        public static function getAllowedStatusRange() {
+                return array(
+                    self::STATUS_NOTYETSTARTED,
+                    self::STATUS_STARTED,
+                    self::STATUS_FINISHED
+                );
+        }
 	/**
 	 * @return array relational rules.
 	 */
@@ -144,6 +167,14 @@ class Issue extends CActiveRecord
                 self::TYPE_BUG=>'Bug',
                 self::TYPE_FEATURE=>'Feature',
                 self::TYPE_TASK=>'Task',
+            );
+        }
+        public function getStatusOptions()
+        {
+            return array(
+                self::STATUS_NOTYETSTARTED=>'Not Yet Started',
+                self::STATUS_STARTED=>'Started',
+                self::STATUS_FINISHED=>'Finished',
             );
         }
 }

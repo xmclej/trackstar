@@ -31,21 +31,21 @@
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
-	<div class="row">
+<!--	<div class="row">
 		<?php echo $form->labelEx($model,'project_id'); ?>
 		<?php echo $form->textField($model,'project_id'); ?>
 		<?php echo $form->error($model,'project_id'); ?>
 	</div>
-
+-->
 	<div class="row">
 		<?php echo $form->labelEx($model,'type_id'); ?>
-		<?php echo $form->textField($model,'type_id'); ?>
+		<?php echo $form->dropDownList($model,'type_id',$model->getTypeOptions()); ?>
 		<?php echo $form->error($model,'type_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'status_id'); ?>
-		<?php echo $form->textField($model,'status_id'); ?>
+		<?php echo $form->dropDownList($model,'status_id',$model->getStatusOptions()); ?>
 		<?php echo $form->error($model,'status_id'); ?>
 	</div>
 
