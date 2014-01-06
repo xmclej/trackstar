@@ -128,14 +128,12 @@ class IssueController extends Controller
 	 */
 	public function actionIndex()
 	{
-            
-            $dataProvider=new CActiveDataProvider('Issue');
-//                    , array(
-//                'criteria'=>array(
-//                'condition'=>'project_id=:projectId',
-//                'params'=>array(':projectId'=>$this->_project->id),
-//                ),
-//            ));
+            $dataProvider = new CActiveDataProvider('Issue', array(
+                'criteria'=>array(
+                'condition'=>'project_id=:projectId',
+                'params'=>array(':projectId'=>$this->_project->id),
+                ),
+            ));
             $this->render('index',array(
 		'dataProvider'=>$dataProvider,
 		));
