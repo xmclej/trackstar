@@ -3,33 +3,15 @@
 class IssueController extends Controller
 {
         /**
-        * @var private property containing the associated Project model instance.
-        */
-        private $_project = null;
-
-        /**
-        * Protected method to load the associated Project model class
-        * @param integer projectId the primary identifier of the associated Project
-        * @return object the Project data model based on the primary key 
-        */
-        protected function loadProject($projectId)    
-        {
-            //if the project property is null, create it based on input id
-            if($this->_project===null)
-            {
-                $this->_project=Project::model()->findByPk($projectId);
-                if($this->_project===null)
-                {
-                    throw new CHttpException(404,'The requested project does not exist.'); 
-                }
-            }
-             return $this->_project; 
-        } 
-        /**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
+
+        /**
+        * @var private property containing the associated Project model instance.
+        */
+        private $_project = null;
 
 	/**
 	 * @return array action filters
@@ -38,8 +20,7 @@ class IssueController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
-                        'projectContext + create', //check to ensure valid project context
+                        'projectContext + create index admin', //check to ensure valid project context
 		);
 	}
 
@@ -147,9 +128,16 @@ class IssueController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Issue');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+            
+            $dataProvider=new CActiveDataProvider('Issue');
+//                    , array(
+//                'criteria'=>array(
+//                'condition'=>'project_id=:projectId',
+//                'params'=>array(':projectId'=>$this->_project->id),
+//                ),
+//            ));
+            $this->render('index',array(
+		'dataProvider'=>$dataProvider,
 		));
 	}
 
@@ -162,7 +150,7 @@ class IssueController extends Controller
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Issue']))
 			$model->attributes=$_GET['Issue'];
-
+                $model->project_id= $this->_project->id;
 		$this->render('admin',array(
 			'model'=>$model,
 		));
@@ -195,6 +183,25 @@ class IssueController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+        /**
+        * Protected method to load the associated Project model class
+        * @param integer projectId the primary identifier of the associated Project
+        * @return object the Project data model based on the primary key 
+        */
+        protected function loadProject($projectId)    
+        {
+            //if the project property is null, create it based on input id
+            if($this->_project===null)
+            {
+                $this->_project=Project::model()->findByPk($projectId);
+                if($this->_project===null)
+                {
+                    throw new CHttpException(404,'The requested project does not exist.'); 
+                }
+            }
+             return $this->_project; 
+        } 
 
         /**
         * In-class defined filter method, configured for use in the above filters() 

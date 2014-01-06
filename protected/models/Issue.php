@@ -53,7 +53,7 @@ class Issue extends CActiveRecord
 			array('name', 'length', 'max'=>255),
 			array('description, create_time, update_time', 'safe'),
                         array('type_id', 'in','range'=>self::getAllowedTypeRange()),
-                        array('status', 'in','range'=>self::getAllowedStatusRange()),
+                        array('status_id', 'in','range'=>self::getAllowedStatusRange()),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, name, description, project_id, type_id, status_id, owner_id, requester_id, create_time, create_user_id, update_time, update_user_id', 'safe', 'on'=>'search'),
@@ -141,7 +141,9 @@ class Issue extends CActiveRecord
 		$criteria->compare('create_user_id',$this->create_user_id);
 		$criteria->compare('update_time',$this->update_time,true);
 		$criteria->compare('update_user_id',$this->update_user_id);
-
+                $criteria->condition='project_id=:projectID';
+                $criteria->params=array(':projectID'=>$this->project_id);
+                
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
@@ -177,4 +179,22 @@ class Issue extends CActiveRecord
                 self::STATUS_FINISHED=>'Finished',
             );
         }
+
+        /**
+        * @return string the status text display for the current issue
+        */ 
+        public function getStatusText()
+        {
+            $statusOptions=$this->statusOptions;
+            return isset($statusOptions[$this->status_id]) ? $statusOptions[$this->status_id] : "unknown status ({$this->status_id})";
+        }
+
+        /**
+        * @return string the type text display for the current issue
+        */ 
+        public function getTypeText()
+        {
+            $typeOptions=$this->typeOptions;
+            return isset($typeOptions[$this->type_id]) ? $typeOptions[$this->type_id] : "unknown type ({$this->type_id})";
+        }        
 }
