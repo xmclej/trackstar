@@ -1,5 +1,5 @@
 <?php
-
+    require("PasswordHash.php");
 /**
  * This is the model class for table "tbl_user".
  *
@@ -19,8 +19,9 @@
  * @property Issue[] $issues1
  * @property Project[] $tblProjects
  */
-class User extends CActiveRecord
+class User extends TrackStarActiveRecord
 {
+        public $password_repeat;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -37,10 +38,12 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, email, password', 'required'),
-			array('create_user_id, update_user_id', 'numerical', 'integerOnly'=>true),
+			array('username, email, password, password_repeat', 'required'),
 			array('username, email, password', 'length', 'max'=>255),
-			array('last_login_time, create_time, update_time', 'safe'),
+                        array('email, username', 'unique'),
+                        array('email', 'email'),
+                        array('password', 'compare'),
+                        array('password_repeat', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, username, email, password, last_login_time, create_time, create_user_id, update_time, update_user_id', 'safe', 'on'=>'search'),
@@ -122,4 +125,42 @@ class User extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-}
+        
+        public function behaviors() 
+        {
+            return array(
+                'CTimestampBehavior' => array(
+                    'class' => 'zii.behaviors.CTimestampBehavior',
+                    'createAttribute' => 'create_time',
+                    'updateAttribute' => 'update_time',
+                    'setUpdateOnCreate' => true,
+                ),
+            );
+        }
+        /**
+        * apply a hash on the password before we store it in the database
+        */
+        protected function afterValidate()
+        {   
+            parent::afterValidate();
+            if(!$this->hasErrors()) {
+                //DoS attacks
+                if(strlen($this->password)>72)
+                    {die("Password must be 72 characters or less");}
+                $this->password = $this->hashPassword($this->password);
+                if(strlen($this->password)<20)
+                    {die("Someyhing went wrong with the hashing");}
+            }
+        }
+  
+        /**
+        * Generates the password hash.
+        * @param string password
+        * @return string hash
+        */
+        public function hashPassword($password)
+        {
+            $hasher=new PasswordHash(8, false);
+            return $hasher->HashPassword($password);
+        }
+    }

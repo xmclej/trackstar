@@ -31,5 +31,7 @@ $this->menu=array(
                     'value'=>isset($model->owner)?CHtml::encode($model->owner->username):"unknown"),
                 array('name'=>'requester_id',
                     'value'=>isset($model->requester)?CHtml::encode($model->requester->username):"unknown"),
+                'create_time',
+		'update_time',
                 )
         )); ?>
