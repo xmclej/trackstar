@@ -3,7 +3,7 @@
 /* @var $model Issue */
 
 $this->breadcrumbs=array(
-	'Issues'=>array('index'),
+	'Issues'=>array('index','pid'=>$model->project->id),
 	'Create',
 );
 
