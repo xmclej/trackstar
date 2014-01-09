@@ -24,6 +24,14 @@ return array(
 			'charset' => 'utf8',
 		),
 		
+                'authManager'=>array(
+                    'class'=>'CDbAuthManager',
+                    'connectionID'=>'db',
+                    'itemTable' =>'tbl_auth_item',
+                    'itemChildTable' =>'tbl_auth_item_child',
+                    'assignmentTable' =>'tbl_auth_assignment',
+                ),
+            
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(

@@ -1421,3 +1421,291 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/trackstar/index.php?r=user/index
 ---
+2014/01/07 03:03:23 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.lastLogin" is not defined.' in W:\wamp\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 W:\wamp\yii\framework\web\auth\CWebUser.php(146): CComponent->__get('lastLogin')
+#1 W:\wamp\www\trackstar\protected\views\site\index.php(10): CWebUser->__get('lastLogin')
+#2 W:\wamp\yii\framework\web\CBaseController.php(126): require('W:\wamp\www\tra...')
+#3 W:\wamp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('W:\wamp\www\tra...', NULL, true)
+#4 W:\wamp\yii\framework\web\CController.php(869): CBaseController->renderFile('W:\wamp\www\tra...', NULL, true)
+#5 W:\wamp\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#6 W:\wamp\www\trackstar\protected\controllers\SiteController.php(32): CController->render('index')
+#7 W:\wamp\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#8 W:\wamp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 W:\wamp\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 W:\wamp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 W:\wamp\yii\framework\web\CWebApplication.php(282): CController->run('index')
+#12 W:\wamp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/index')
+#13 W:\wamp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 W:\wamp\www\trackstar\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/trackstar/index.php?r=site/index
+HTTP_REFERER=http://localhost/trackstar/index.php?r=user
+---
+2014/01/07 03:03:34 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.lastLogin" is not defined.' in W:\wamp\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 W:\wamp\yii\framework\web\auth\CWebUser.php(146): CComponent->__get('lastLogin')
+#1 W:\wamp\www\trackstar\protected\views\site\index.php(10): CWebUser->__get('lastLogin')
+#2 W:\wamp\yii\framework\web\CBaseController.php(126): require('W:\wamp\www\tra...')
+#3 W:\wamp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('W:\wamp\www\tra...', NULL, true)
+#4 W:\wamp\yii\framework\web\CController.php(869): CBaseController->renderFile('W:\wamp\www\tra...', NULL, true)
+#5 W:\wamp\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#6 W:\wamp\www\trackstar\protected\controllers\SiteController.php(32): CController->render('index')
+#7 W:\wamp\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#8 W:\wamp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 W:\wamp\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 W:\wamp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 W:\wamp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#12 W:\wamp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#13 W:\wamp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 W:\wamp\www\trackstar\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/trackstar/index.php?
+---
+2014/01/07 03:03:47 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.lastLogin" is not defined.' in W:\wamp\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 W:\wamp\yii\framework\web\auth\CWebUser.php(146): CComponent->__get('lastLogin')
+#1 W:\wamp\www\trackstar\protected\views\site\index.php(10): CWebUser->__get('lastLogin')
+#2 W:\wamp\yii\framework\web\CBaseController.php(126): require('W:\wamp\www\tra...')
+#3 W:\wamp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('W:\wamp\www\tra...', NULL, true)
+#4 W:\wamp\yii\framework\web\CController.php(869): CBaseController->renderFile('W:\wamp\www\tra...', NULL, true)
+#5 W:\wamp\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#6 W:\wamp\www\trackstar\protected\controllers\SiteController.php(32): CController->render('index')
+#7 W:\wamp\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#8 W:\wamp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 W:\wamp\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 W:\wamp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 W:\wamp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#12 W:\wamp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#13 W:\wamp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 W:\wamp\www\trackstar\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/trackstar/index.php?
+---
+2014/01/07 03:03:49 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.lastLogin" is not defined.' in W:\wamp\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 W:\wamp\yii\framework\web\auth\CWebUser.php(146): CComponent->__get('lastLogin')
+#1 W:\wamp\www\trackstar\protected\views\site\index.php(10): CWebUser->__get('lastLogin')
+#2 W:\wamp\yii\framework\web\CBaseController.php(126): require('W:\wamp\www\tra...')
+#3 W:\wamp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('W:\wamp\www\tra...', NULL, true)
+#4 W:\wamp\yii\framework\web\CController.php(869): CBaseController->renderFile('W:\wamp\www\tra...', NULL, true)
+#5 W:\wamp\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#6 W:\wamp\www\trackstar\protected\controllers\SiteController.php(32): CController->render('index')
+#7 W:\wamp\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#8 W:\wamp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 W:\wamp\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 W:\wamp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 W:\wamp\yii\framework\web\CWebApplication.php(282): CController->run('index')
+#12 W:\wamp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/index')
+#13 W:\wamp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 W:\wamp\www\trackstar\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/trackstar/index.php?r=site/index
+HTTP_REFERER=http://localhost/trackstar/index.php?r=user
+---
+2014/01/07 03:03:55 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.lastLogin" is not defined.' in W:\wamp\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 W:\wamp\yii\framework\web\auth\CWebUser.php(146): CComponent->__get('lastLogin')
+#1 W:\wamp\www\trackstar\protected\views\site\index.php(10): CWebUser->__get('lastLogin')
+#2 W:\wamp\yii\framework\web\CBaseController.php(126): require('W:\wamp\www\tra...')
+#3 W:\wamp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('W:\wamp\www\tra...', NULL, true)
+#4 W:\wamp\yii\framework\web\CController.php(869): CBaseController->renderFile('W:\wamp\www\tra...', NULL, true)
+#5 W:\wamp\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#6 W:\wamp\www\trackstar\protected\controllers\SiteController.php(32): CController->render('index')
+#7 W:\wamp\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#8 W:\wamp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 W:\wamp\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 W:\wamp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 W:\wamp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#12 W:\wamp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#13 W:\wamp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 W:\wamp\www\trackstar\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/trackstar/index.php
+HTTP_REFERER=http://localhost/trackstar/index.php?r=site/page&view=about
+---
+2014/01/07 03:05:00 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.lastLogin" is not defined.' in W:\wamp\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 W:\wamp\yii\framework\web\auth\CWebUser.php(146): CComponent->__get('lastLogin')
+#1 W:\wamp\www\trackstar\protected\views\site\index.php(10): CWebUser->__get('lastLogin')
+#2 W:\wamp\yii\framework\web\CBaseController.php(126): require('W:\wamp\www\tra...')
+#3 W:\wamp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('W:\wamp\www\tra...', NULL, true)
+#4 W:\wamp\yii\framework\web\CController.php(869): CBaseController->renderFile('W:\wamp\www\tra...', NULL, true)
+#5 W:\wamp\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#6 W:\wamp\www\trackstar\protected\controllers\SiteController.php(32): CController->render('index')
+#7 W:\wamp\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#8 W:\wamp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 W:\wamp\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 W:\wamp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 W:\wamp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#12 W:\wamp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#13 W:\wamp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 W:\wamp\www\trackstar\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/trackstar/index.php
+HTTP_REFERER=http://localhost/trackstar/index.php?r=site/page&view=about
+---
+2014/01/07 03:06:27 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.lastLogin" is not defined.' in W:\wamp\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 W:\wamp\yii\framework\web\auth\CWebUser.php(146): CComponent->__get('lastLogin')
+#1 W:\wamp\www\trackstar\protected\views\site\index.php(10): CWebUser->__get('lastLogin')
+#2 W:\wamp\yii\framework\web\CBaseController.php(126): require('W:\wamp\www\tra...')
+#3 W:\wamp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('W:\wamp\www\tra...', NULL, true)
+#4 W:\wamp\yii\framework\web\CController.php(869): CBaseController->renderFile('W:\wamp\www\tra...', NULL, true)
+#5 W:\wamp\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#6 W:\wamp\www\trackstar\protected\controllers\SiteController.php(32): CController->render('index')
+#7 W:\wamp\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#8 W:\wamp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 W:\wamp\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 W:\wamp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 W:\wamp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#12 W:\wamp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#13 W:\wamp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 W:\wamp\www\trackstar\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/trackstar/index.php
+HTTP_REFERER=http://localhost/trackstar/index.php?r=site/page&view=about
+---
+2014/01/07 03:06:28 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.lastLogin" is not defined.' in W:\wamp\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 W:\wamp\yii\framework\web\auth\CWebUser.php(146): CComponent->__get('lastLogin')
+#1 W:\wamp\www\trackstar\protected\views\site\index.php(10): CWebUser->__get('lastLogin')
+#2 W:\wamp\yii\framework\web\CBaseController.php(126): require('W:\wamp\www\tra...')
+#3 W:\wamp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('W:\wamp\www\tra...', NULL, true)
+#4 W:\wamp\yii\framework\web\CController.php(869): CBaseController->renderFile('W:\wamp\www\tra...', NULL, true)
+#5 W:\wamp\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#6 W:\wamp\www\trackstar\protected\controllers\SiteController.php(32): CController->render('index')
+#7 W:\wamp\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#8 W:\wamp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 W:\wamp\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 W:\wamp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 W:\wamp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#12 W:\wamp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#13 W:\wamp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 W:\wamp\www\trackstar\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/trackstar/index.php
+HTTP_REFERER=http://localhost/trackstar/index.php?r=site/page&view=about
+---
+2014/01/07 03:06:28 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.lastLogin" is not defined.' in W:\wamp\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 W:\wamp\yii\framework\web\auth\CWebUser.php(146): CComponent->__get('lastLogin')
+#1 W:\wamp\www\trackstar\protected\views\site\index.php(10): CWebUser->__get('lastLogin')
+#2 W:\wamp\yii\framework\web\CBaseController.php(126): require('W:\wamp\www\tra...')
+#3 W:\wamp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('W:\wamp\www\tra...', NULL, true)
+#4 W:\wamp\yii\framework\web\CController.php(869): CBaseController->renderFile('W:\wamp\www\tra...', NULL, true)
+#5 W:\wamp\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#6 W:\wamp\www\trackstar\protected\controllers\SiteController.php(32): CController->render('index')
+#7 W:\wamp\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#8 W:\wamp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 W:\wamp\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 W:\wamp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 W:\wamp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#12 W:\wamp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#13 W:\wamp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 W:\wamp\www\trackstar\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/trackstar/index.php
+HTTP_REFERER=http://localhost/trackstar/index.php?r=site/page&view=about
+---
+2014/01/07 03:09:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "projects".' in W:\wamp\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 W:\wamp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('projects')
+#1 W:\wamp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 W:\wamp\www\trackstar\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/trackstar/index.php?r=projects
+---
+2014/01/09 01:54:43 [error] [php] include(RbacCommand.php): failed to open stream: No such file or directory (W:\wamp\yii\framework\YiiBase.php:427)
+Stack trace:
+#0 W:\wamp\yii\framework\console\CConsoleCommandRunner.php(170): spl_autoload_call()
+#1 W:\wamp\yii\framework\console\CHelpCommand.php(64): CConsoleCommandRunner->createCommand()
+#2 W:\wamp\yii\framework\console\CConsoleCommandRunner.php(71): CHelpCommand->run()
+#3 W:\wamp\yii\framework\console\CConsoleApplication.php(92): CConsoleCommandRunner->run()
+#4 W:\wamp\yii\framework\base\CApplication.php(180): CConsoleApplication->processRequest()
+#5 W:\wamp\yii\framework\yiic.php(33): CConsoleApplication->run()
+#6 W:\wamp\www\trackstar\protected\yiic.php(7): require_once()
+
+2014/01/09 01:55:54 [error] [php] include(RbacCommand.php): failed to open stream: No such file or directory (W:\wamp\yii\framework\YiiBase.php:427)
+Stack trace:
+#0 W:\wamp\yii\framework\console\CConsoleCommandRunner.php(170): spl_autoload_call()
+#1 W:\wamp\yii\framework\console\CHelpCommand.php(64): CConsoleCommandRunner->createCommand()
+#2 W:\wamp\yii\framework\console\CConsoleCommandRunner.php(71): CHelpCommand->run()
+#3 W:\wamp\yii\framework\console\CConsoleApplication.php(92): CConsoleCommandRunner->run()
+#4 W:\wamp\yii\framework\base\CApplication.php(180): CConsoleApplication->processRequest()
+#5 W:\wamp\yii\framework\yiic.php(33): CConsoleApplication->run()
+#6 W:\wamp\www\trackstar\protected\yiic.php(7): require_once()
+
+2014/01/09 01:56:01 [error] [php] include(RbacCommand.php): failed to open stream: No such file or directory (W:\wamp\yii\framework\YiiBase.php:427)
+Stack trace:
+#0 W:\wamp\yii\framework\console\CConsoleCommandRunner.php(170): spl_autoload_call()
+#1 W:\wamp\yii\framework\console\CHelpCommand.php(64): CConsoleCommandRunner->createCommand()
+#2 W:\wamp\yii\framework\console\CConsoleCommandRunner.php(71): CHelpCommand->run()
+#3 W:\wamp\yii\framework\console\CConsoleApplication.php(92): CConsoleCommandRunner->run()
+#4 W:\wamp\yii\framework\base\CApplication.php(180): CConsoleApplication->processRequest()
+#5 W:\wamp\yii\framework\yiic.php(33): CConsoleApplication->run()
+#6 W:\wamp\www\trackstar\protected\yiic.php(7): require_once()
+
+2014/01/09 06:35:16 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.authManager" is not defined.' in W:\wamp\yii\framework\base\CComponent.php:173
+Stack trace:
+#0 W:\wamp\yii\framework\web\auth\CWebUser.php(160): CComponent->__set('authManager', Array)
+#1 W:\wamp\yii\framework\YiiBase.php(220): CWebUser->__set('authManager', Array)
+#2 W:\wamp\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#3 W:\wamp\yii\framework\web\CWebApplication.php(209): CModule->getComponent('user')
+#4 W:\wamp\yii\framework\web\auth\CAccessControlFilter.php(132): CWebApplication->getUser()
+#5 W:\wamp\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#6 W:\wamp\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 W:\wamp\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 W:\wamp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 W:\wamp\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 W:\wamp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 W:\wamp\yii\framework\web\CWebApplication.php(282): CController->run('view')
+#12 W:\wamp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('project/view')
+#13 W:\wamp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 W:\wamp\www\trackstar\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/trackstar/index.php?r=project/view&id=1
+---
+2014/01/09 06:35:34 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.authManager" is not defined.' in W:\wamp\yii\framework\base\CComponent.php:173
+Stack trace:
+#0 W:\wamp\yii\framework\web\auth\CWebUser.php(160): CComponent->__set('authManager', Array)
+#1 W:\wamp\yii\framework\YiiBase.php(220): CWebUser->__set('authManager', Array)
+#2 W:\wamp\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#3 W:\wamp\yii\framework\web\CWebApplication.php(209): CModule->getComponent('user')
+#4 W:\wamp\yii\framework\web\auth\CAccessControlFilter.php(132): CWebApplication->getUser()
+#5 W:\wamp\yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#6 W:\wamp\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 W:\wamp\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 W:\wamp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 W:\wamp\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 W:\wamp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 W:\wamp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#12 W:\wamp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('project')
+#13 W:\wamp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 W:\wamp\www\trackstar\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/trackstar/index.php?r=project
+---
+2014/01/09 06:35:40 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.authManager" is not defined.' in W:\wamp\yii\framework\base\CComponent.php:173
+Stack trace:
+#0 W:\wamp\yii\framework\web\auth\CWebUser.php(160): CComponent->__set('authManager', Array)
+#1 W:\wamp\yii\framework\YiiBase.php(220): CWebUser->__set('authManager', Array)
+#2 W:\wamp\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#3 W:\wamp\yii\framework\base\CModule.php(103): CModule->getComponent('user')
+#4 W:\wamp\www\trackstar\protected\views\site\index.php(8): CModule->__get('user')
+#5 W:\wamp\yii\framework\web\CBaseController.php(126): require('W:\wamp\www\tra...')
+#6 W:\wamp\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('W:\wamp\www\tra...', NULL, true)
+#7 W:\wamp\yii\framework\web\CController.php(869): CBaseController->renderFile('W:\wamp\www\tra...', NULL, true)
+#8 W:\wamp\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#9 W:\wamp\www\trackstar\protected\controllers\SiteController.php(32): CController->render('index')
+#10 W:\wamp\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#11 W:\wamp\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#12 W:\wamp\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#13 W:\wamp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 W:\wamp\yii\framework\web\CWebApplication.php(282): CController->run('')
+#15 W:\wamp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#16 W:\wamp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 W:\wamp\www\trackstar\index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/trackstar/index.php
+---

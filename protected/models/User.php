@@ -140,6 +140,8 @@ class User extends TrackStarActiveRecord
         /**
         * apply a hash on the password before we store it in the database
         */
+        
+/****
         protected function afterValidate()
         {   
             parent::afterValidate();
@@ -152,15 +154,44 @@ class User extends TrackStarActiveRecord
                     {die("Someyhing went wrong with the hashing");}
             }
         }
+  /**
+   * apply a hash on the password before we store it in the database
+   */
+  protected function afterValidate()
+  {   
+    parent::afterValidate();
+  if(!$this->hasErrors())
+      $this->password = $this->hashPassword($this->password);
+  }
   
+  /**
+   * Generates the password hash.
+   * @param string password
+     * @return string hash
+   */
+    public function hashPassword($password)
+  {
+    return md5($password);
+  }
         /**
         * Generates the password hash.
         * @param string password
         * @return string hash
         */
+/****
         public function hashPassword($password)
         {
             $hasher=new PasswordHash(8, false);
             return $hasher->HashPassword($password);
         }
-    }
+***/
+       /** *
+        * Checks if the given password is correct.
+        * @param string the password to be validated
+        * @return boolean whether the password is valid
+        */
+        public function validatePassword($password)
+        {
+            return $this->hashPassword($password)===$this->password;
+        }
+  }
