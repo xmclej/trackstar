@@ -1184,3 +1184,21 @@ REQUEST_URI=/trackstar/index.php?r=project
 in W:\wamp\www\trackstar\protected\components\views\recentCommentsWidget.php (4)
 in W:\wamp\www\trackstar\protected\components\RecentCommentsWidget.php (27)
 in W:\wamp\www\trackstar\protected\views\project\index.php (24)
+2014/01/14 06:30:35 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Must specify a project before performing this action.' in W:\wamp\www\trackstar\protected\controllers\IssueController.php:200
+Stack trace:
+#0 W:\wamp\yii\framework\web\filters\CInlineFilter.php(58): IssueController->filterProjectContext(Object(CFilterChain))
+#1 W:\wamp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#2 W:\wamp\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 W:\wamp\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 W:\wamp\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 W:\wamp\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 W:\wamp\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 W:\wamp\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 W:\wamp\yii\framework\web\CWebApplication.php(282): CController->run('index')
+#9 W:\wamp\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('issue/index')
+#10 W:\wamp\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 W:\wamp\www\trackstar\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/trackstar/index.php?r=issue/index
+HTTP_REFERER=http://localhost/trackstar/index.php?r=issue/view&id=8
+---

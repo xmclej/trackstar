@@ -29,16 +29,16 @@ class IssueController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
-	{
-		$issue=$this->loadModel($id);
-		$comment=$this->createComment($issue);
-		$this->render('view',array(
-			'model'=>$issue,
-			'comment'=>$comment,
-		));
-		
-	}
+	public function loadModel($id, $withComments=false)
+        {
+            if($withComments)
+                $model = Issue::model()->with(array('comments'=>array('with'=>'author')))->findByPk($id);
+            else
+                $model=Issue::model()->findByPk($id);
+            if($model===null)
+                throw new CHttpException(404,'The requested page does not exist.');
+            return $model;
+        }
 
 	/**
 	 * Creates a new model.

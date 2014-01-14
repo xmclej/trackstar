@@ -118,5 +118,15 @@ class Comment extends TrackStarActiveRecord
 		);     
 		return $this;
 	}
-	
+
+        public function scopes()
+        {
+            return array(
+              'recent'=>array(
+                'order'=>'create_time DESC',
+                'limit'=>5,
+              ),
+            );
+        }        
+        
 }
