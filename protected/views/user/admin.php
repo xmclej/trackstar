@@ -1,7 +1,4 @@
 <?php
-/* @var $this UserController */
-/* @var $model User */
-
 $this->breadcrumbs=array(
 	'Users'=>array('index'),
 	'Manage',
@@ -18,7 +15,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#user-grid').yiiGridView('update', {
+	$.fn.yiiGridView.update('user-grid', {
 		data: $(this).serialize()
 	});
 	return false;

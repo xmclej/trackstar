@@ -1,8 +1,3 @@
-<?php
-/* @var $this UserController */
-/* @var $data User */
-?>
-
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>

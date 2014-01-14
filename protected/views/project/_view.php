@@ -1,8 +1,3 @@
-<?php
-/* @var $this ProjectController */
-/* @var $data Project */
-?>
-
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>

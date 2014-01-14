@@ -15,6 +15,16 @@
 class Project extends TrackStarActiveRecord
 {
 	/**
+	 * Returns the static model of the specified AR class.
+	 * @param string $className active record class name.
+	 * @return Project the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+
+	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
@@ -35,23 +45,22 @@ class Project extends TrackStarActiveRecord
 			array('name', 'length', 'max'=>255),
 			array('create_time, update_time', 'safe'),
 			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
+			// Please remove those attributes that should not be searched.
 			array('id, name, description, create_time, create_user_id, update_time, update_user_id', 'safe', 'on'=>'search'),
 		);
 	}
 
 	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-                    'issues' => array(self::HAS_MANY, 'Issue', 'project_id'),
-                    'users' => array(self::MANY_MANY, 'User', 'tbl_project_user_assignment(project_id, user_id)'),
-                );
-	}
+     * @return array relational rules.
+     */
+    public function relations()
+    {
+        return array(
+            'issues' => array(self::HAS_MANY, 'Issue', 'project_id'),
+            'users' => array(self::MANY_MANY, 'User', 'tbl_project_user_assignment(project_id, user_id)'),
+        );
+    }
+   
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -71,19 +80,12 @@ class Project extends TrackStarActiveRecord
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
-	 * @return CActiveDataProvider the data provider that can return the models
-	 * based on the search/filter conditions.
+	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
 	public function search()
 	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
+		// Warning: Please modify the following code to remove attributes that
+		// should not be searched.
 
 		$criteria=new CDbCriteria;
 
@@ -99,68 +101,76 @@ class Project extends TrackStarActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-
+	
 	/**
-	 * Returns the static model of the specified AR class.
-	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * @param string $className active record class name.
-	 * @return Project the static model class
-	 */
-	public static function model($className=__CLASS__)
+	 * @return array of valid users for this project, indexed by user IDs
+	 */ 
+	public function getUserOptions()
 	{
-		return parent::model($className);
+		$usersArray = CHtml::listData($this->users, 'id', 'username');	
+		return $usersArray;
+	} 
+	
+	/**
+	 * Assigns a user, in a specific role, to the project
+	 * @param int $userId the primary key for the user
+	 * @param string $role the role assigned to the user for the project  	
+	 */
+	public function assignUser($userId, $role)
+	{
+		$command = Yii::app()->db->createCommand();
+		$command->insert('tbl_project_user_assignment', array(
+		    'role'=>$role,
+		    'user_id'=>$userId,
+			'project_id'=>$this->id,
+		));
 	}
-
-        /**
-         * @return array of valid users for this project, indexed by user IDs
-        */ 
-        public function getUserOptions()
-        {
-            $usersArray = CHtml::listData($this->users, 'id', 'username');
-            return $usersArray;
-        } 
-        public function assignUser($userId, $role)
-        {
-            $command = Yii::app()->db->createCommand();
-            $command->insert('tbl_project_user_assignment', array(
-                'role'=>$role,
-                'user_id'=>$userId,
-                'project_id'=>$this->id,
-            ));
-        }        
-
-        public function removeUser($userId)
-        {
-            $command = Yii::app()->db->createCommand();
-            $command->delete(
-                'tbl_project_user_assignment', 
-                'user_id=:userId AND project_id=:projectId', 
-                array(':userId'=>$userId,':projectId'=>$this->id));
-        }        
-
-        public function allowCurrentUser($role)
-        {
-            $sql = "SELECT * FROM tbl_project_user_assignment WHERE project_id=:projectId AND user_id=:userId AND role=:role";
-            $command = Yii::app()->db->createCommand($sql);
-            $command->bindValue(":projectId", $this->id, PDO::PARAM_INT);
-            $command->bindValue(":userId", Yii::app()->user->getId(), PDO::PARAM_INT);
-            $command->bindValue(":role", $role, PDO::PARAM_STR);
-            return $command->execute()==1;
-        }
-
-        public function getUserRoleOptions()
-        {
-            return CHtml::listData(Yii::app()->authManager->getRoles(), 'name', 'name');
-        }
-        
-        public function isUserInProject($user)
-        {
-            $sql = "SELECT user_id FROM tbl_project_user_assignment WHERE project_id=:projectId AND user_id=:userId";
-            $command = Yii::app()->db->createCommand($sql);
-            $command->bindValue(":projectId", $this->id, PDO::PARAM_INT);
-            $command->bindValue(":userId", $user->id, PDO::PARAM_INT);
-            return $command->execute()==1;
-        }
-        
-        
+	
+	/**
+	 * Removes a user from being associated with the project
+	 * @param int $userId the primary key for the user
+	 */
+	public function removeUser($userId)
+	{
+		$command = Yii::app()->db->createCommand();
+		$command->delete('tbl_project_user_assignment', 'user_id=:userId AND project_id=:projectId', array(':userId'=>$userId,':projectId'=>$this->id));
+	}
+	
+	/**
+	 * Determines whether or not the current application user is in the role for the project
+	 * @param string $role the role assigned to the user for the project 
+	 * @return boolean whether or not the user is in the role for this project 	
+	 */
+	public function allowCurrentUser($role)
+	{
+		$sql = "SELECT * FROM tbl_project_user_assignment WHERE project_id=:projectId AND user_id=:userId AND role=:role";
+		$command = Yii::app()->db->createCommand($sql);
+		$command->bindValue(":projectId", $this->id, PDO::PARAM_INT);
+		$command->bindValue(":userId", Yii::app()->user->getId(), PDO::PARAM_INT);
+		$command->bindValue(":role", $role, PDO::PARAM_STR);
+		return $command->execute()==1 ? true : false;
+	}
+	
+	/**
+	 * Returns an array of available roles in which a user can be placed when being added to a project
+	 */
+	public static function getUserRoleOptions()
+	{
+		return CHtml::listData(Yii::app()->authManager->getRoles(), 'name', 'name');    
+	} 
+	
+	/* 
+	 * Determines whether or not a user is already part of a project
+	 */
+	public function isUserInProject($user) 
+	{
+		$sql = "SELECT user_id FROM tbl_project_user_assignment WHERE project_id=:projectId AND user_id=:userId";
+		$command = Yii::app()->db->createCommand($sql);
+		$command->bindValue(":projectId", $this->id, PDO::PARAM_INT);
+		$command->bindValue(":userId", $user->id, PDO::PARAM_INT);
+		return $command->execute()==1;
+	}
+	
+	
+	
 }

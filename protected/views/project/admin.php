@@ -1,14 +1,11 @@
 <?php
-/* @var $this ProjectController */
-/* @var $model Project */
-
 $this->breadcrumbs=array(
 	'Projects'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Project', 'url'=>array('index')),
+	array('label'=>'List Projects', 'url'=>array('index')),
 	array('label'=>'Create Project', 'url'=>array('create')),
 );
 
@@ -18,7 +15,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#project-grid').yiiGridView('update', {
+	$.fn.yiiGridView.update('project-grid', {
 		data: $(this).serialize()
 	});
 	return false;

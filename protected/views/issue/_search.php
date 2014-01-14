@@ -1,9 +1,3 @@
-<?php
-/* @var $this IssueController */
-/* @var $model Issue */
-/* @var $form CActiveForm */
-?>
-
 <div class="wide form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(

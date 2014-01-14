@@ -1,15 +1,12 @@
 <?php
-/* @var $this IssueController */
-/* @var $model Issue */
-
 $this->breadcrumbs=array(
 	'Issues'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Issue', 'url'=>array('index','pid'=>$model->project->id)),
-	array('label'=>'Create Issue', 'url'=>array('create','pid'=>$model->project->id)),
+	array('label'=>'List Issues', 'url'=>array('index', 'pid'=>$model->project->id)),
+	array('label'=>'Create Issue', 'url'=>array('create', 'pid'=>$model->project->id)),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -18,7 +15,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#issue-grid').yiiGridView('update', {
+	$.fn.yiiGridView.update('issue-grid', {
 		data: $(this).serialize()
 	});
 	return false;

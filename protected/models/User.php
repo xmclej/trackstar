@@ -1,11 +1,10 @@
 <?php
-    require("PasswordHash.php");
+
 /**
  * This is the model class for table "tbl_user".
  *
  * The followings are the available columns in table 'tbl_user':
  * @property integer $id
- * @property string $username
  * @property string $email
  * @property string $password
  * @property string $last_login_time
@@ -21,7 +20,18 @@
  */
 class User extends TrackStarActiveRecord
 {
-        public $password_repeat;
+	public $password_repeat;
+	
+	/**
+	 * Returns the static model of the specified AR class.
+	 * @param string $className active record class name.
+	 * @return User the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -34,21 +44,21 @@ class User extends TrackStarActiveRecord
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('username, email, password, password_repeat', 'required'),
-			array('username, email, password', 'length', 'max'=>255),
-                        array('email, username', 'unique'),
-                        array('email', 'email'),
-                        array('password', 'compare'),
-                        array('password_repeat', 'safe'),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('id, username, email, password, last_login_time, create_time, create_user_id, update_time, update_user_id', 'safe', 'on'=>'search'),
-		);
-	}
+		{
+			// NOTE: you should only define rules for those attributes that
+			// will receive user inputs.
+			return array(
+				array('email, username, password, password_repeat', 'required'),
+				array('email, username, password', 'length', 'max'=>255),
+				array('email, username', 'unique'),
+				array('password', 'compare'),
+				array('password_repeat', 'safe'),
+				// The following rule is used by search().
+				// Please remove those attributes that should not be searched.
+				array('id, email, username, password, last_login_time, create_time, create_user_id, update_time, update_user_id', 'safe', 'on'=>'search'),
+			);
+		}
+	
 
 	/**
 	 * @return array relational rules.
@@ -71,7 +81,6 @@ class User extends TrackStarActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'username' => 'Username',
 			'email' => 'Email',
 			'password' => 'Password',
 			'last_login_time' => 'Last Login Time',
@@ -84,24 +93,16 @@ class User extends TrackStarActiveRecord
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
-	 * @return CActiveDataProvider the data provider that can return the models
-	 * based on the search/filter conditions.
+	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
 	public function search()
 	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
+		// Warning: Please modify the following code to remove attributes that
+		// should not be searched.
 
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('username',$this->username,true);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('last_login_time',$this->last_login_time,true);
@@ -114,84 +115,36 @@ class User extends TrackStarActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	/**
+	 * apply a hash on the password before we store it in the database
+	 */
+	protected function afterValidate()
+	{   
+		parent::afterValidate();
+		//ensure we don't have any other errors
+		if(!$this->hasErrors())
+			$this->password = $this->hashPassword($this->password);                     
+	}
 
 	/**
-	 * Returns the static model of the specified AR class.
-	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * @param string $className active record class name.
-	 * @return User the static model class
+	 * Generates the password hash.
+	 * @param string password
+	 * @return string hash
 	 */
-	public static function model($className=__CLASS__)
+	public function hashPassword($password)
 	{
-		return parent::model($className);
+		return md5($password);
 	}
-        
-        public function behaviors() 
-        {
-            return array(
-                'CTimestampBehavior' => array(
-                    'class' => 'zii.behaviors.CTimestampBehavior',
-                    'createAttribute' => 'create_time',
-                    'updateAttribute' => 'update_time',
-                    'setUpdateOnCreate' => true,
-                ),
-            );
-        }
-        /**
-        * apply a hash on the password before we store it in the database
-        */
-        
-/****
-        protected function afterValidate()
-        {   
-            parent::afterValidate();
-            if(!$this->hasErrors()) {
-                //DoS attacks
-                if(strlen($this->password)>72)
-                    {die("Password must be 72 characters or less");}
-                $this->password = $this->hashPassword($this->password);
-                if(strlen($this->password)<20)
-                    {die("Someyhing went wrong with the hashing");}
-            }
-        }
-  /**
-   * apply a hash on the password before we store it in the database
-   */
-  protected function afterValidate()
-  {   
-    parent::afterValidate();
-  if(!$this->hasErrors())
-      $this->password = $this->hashPassword($this->password);
-  }
-  
-  /**
-   * Generates the password hash.
-   * @param string password
-     * @return string hash
-   */
-    public function hashPassword($password)
-  {
-    return md5($password);
-  }
-        /**
-        * Generates the password hash.
-        * @param string password
-        * @return string hash
-        */
-/****
-        public function hashPassword($password)
-        {
-            $hasher=new PasswordHash(8, false);
-            return $hasher->HashPassword($password);
-        }
-***/
-       /** *
-        * Checks if the given password is correct.
-        * @param string the password to be validated
-        * @return boolean whether the password is valid
-        */
-        public function validatePassword($password)
-        {
-            return $this->hashPassword($password)===$this->password;
-        }
-  }
+	
+	/**
+	 * Checks if the given password is correct.
+	 * @param string the password to be validated
+	 * @return boolean whether the password is valid
+	 */
+	public function validatePassword($password)
+	{
+		return $this->hashPassword($password)===$this->password;
+	}
+	
+}
